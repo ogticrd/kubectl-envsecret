@@ -6,10 +6,11 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/ogticrd/kubectl-envsecret/internal/utils"
 	"github.com/spf13/cobra"
 )
 
-var envFilePath string = "./"
+var envFilePath []string = []string{"."}
 
 // createCmd represents the create command
 var createCmd = &cobra.Command{
@@ -19,6 +20,8 @@ var createCmd = &cobra.Command{
 
 This command reads the specified .env file, processes its contents, and creates a Kubernetes secret that can be applied to your cluster. This is particularly useful for managing sensitive configuration data with complex, multiline values in a streamlined and efficient manner.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		// Avoid multiple flags with the same value
+		envFilePath = utils.RemoveDuplicatedStringE(envFilePath)
 		fmt.Println("create called with", envFilePath)
 	},
 }
@@ -35,5 +38,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// createCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	createCmd.Flags().StringVar(&envFilePath, "from-env-file", envFilePath, "")
+	createCmd.Flags().StringSliceVar(&envFilePath, "from-env-file", envFilePath, "")
 }
