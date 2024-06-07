@@ -1,6 +1,8 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
+// Package cmd provides the command-line interface for the kubectl-envsecret plugin.
+//
+// This package defines the commands and options available for the kubectl-envsecret
+// plugin, which simplifies the creation of Kubernetes secrets from .env files,
+// including support for multiline environment variables.
 package cmd
 
 import (
@@ -11,7 +13,7 @@ import (
 
 // NativeOptions encapsulates the configuration flags and IO streams for the command.
 type RootCmdOptions struct {
-	configFlags *genericclioptions.ConfigFlags // Configuration flags for the CLI.
+	configFlags *genericclioptions.ConfigFlags // Configuration flags from kubectl CLI.
 
 	genericclioptions.IOStreams // Input/output streams for the CLI.
 }

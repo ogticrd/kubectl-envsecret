@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -11,11 +8,17 @@ import (
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 )
 
+// CreateOptions contains the options for the create command.
 type CreateOptions struct {
-	genericclioptions.IOStreams
-	envFilePath []string
+	genericclioptions.IOStreams          // Input/output streams for the CLI.
+	envFilePath                 []string // Paths to the .env files to be processed.
 }
 
+// NewCreateOptions initializes CreateOptions with the provided IO streams.
+//
+// Example usage:
+// streams := genericclioptions.IOStreams{In: os.Stdin, Out: os.Stdout, ErrOut: os.Stderr}
+// options := NewCreateOptions(streams)
 func NewCreateOptions(streams genericclioptions.IOStreams) *CreateOptions {
 	return &CreateOptions{
 		IOStreams:   streams,
@@ -23,6 +26,12 @@ func NewCreateOptions(streams genericclioptions.IOStreams) *CreateOptions {
 	}
 }
 
+// NewCmdCreate creates a new cobra command for creating Kubernetes secrets from .env files.
+//
+// Example usage:
+// streams := genericclioptions.IOStreams{In: os.Stdin, Out: os.Stdout, ErrOut: os.Stderr}
+// cmd := NewCmdCreate(streams)
+// cmd.Execute()
 func NewCmdCreate(streams genericclioptions.IOStreams) *cobra.Command {
 	o := NewCreateOptions(streams)
 
