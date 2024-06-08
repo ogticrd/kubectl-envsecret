@@ -99,6 +99,9 @@ go run main.go
 
 ```sh
 make run
+
+# For passing args and flags
+make run ARGS='create' FLAGS='--from-env-file ./.env --namespace default'
 ```
 
 ### Running Tests

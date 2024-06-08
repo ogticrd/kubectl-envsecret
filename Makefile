@@ -14,7 +14,7 @@ build:
 build-prod: format build
 
 run: build
-	./$(BINARY_NAME) $(ARGS)
+	./$(BINARY_NAME) $(ARGS) $(FLAGS)
 
 
 .PHONY: build build-prod run format
