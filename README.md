@@ -3,13 +3,13 @@
 ## Overview
 
 `kubectl-envsecret` is a Kubernetes plugin designed to simplify the creation of
-Kubernetes secrets from .env files, including support for multiline environment
-variables. This tool streamlines the management of secrets, making it easier to
-handle configurations that include complex, multiline values.
+Kubernetes secrets from `.env` files, including support for multiline
+environment variables. This tool streamlines the management of secrets, making
+it easier to handle configurations that include complex, multiline values.
 
 ## Features
 
-- Create Kubernetes secrets from .env files.
+- Create Kubernetes secrets from `.env` files.
 - Support for multiline environment variables.
 - Easy integration with `kubectl` as a plugin.
 
@@ -27,7 +27,7 @@ go install github.com/ogticrd/kubectl-envsecret@latest
 ### Basic Usage
 
 The primary command provided by `kubectl-envsecret` is `create`, which reads a
-.env file and creates a corresponding Kubernetes secret.
+`.env` file and creates a corresponding Kubernetes secret.
 
 ```sh
 kubectl envsecret create --from-env-file <path-to-env-file> --from-env-file <path-to-other-files>
@@ -35,21 +35,21 @@ kubectl envsecret create --from-env-file <path-to-env-file> --from-env-file <pat
 
 ### Command Options
 
-- `--from-env-file`: Specifies the path(s) to the .env file. This option can be
-  used multiple times to specify multiple .env files.
+- `--from-env-file`: Specifies the path(s) to the `.env` file. This option can
+  be used multiple times to specify multiple `.env` files.
 
 ### Examples
 
-#### Create a Secret from a Single .env File
+#### Create a Secret from a Single `.env` File
 
 ```sh
-kubectl envsecret create --from-env-file /path/to/.env
+kubectl envsecret create --from-env-file /path/to/`.env`
 ```
 
-#### Create a Secret from Multiple .env Files
+#### Create a Secret from Multiple `.env` Files
 
 ```sh
-kubectl envsecret create --from-env-file /path/to/.env --from-env-file /another/path/.env
+kubectl envsecret create --from-env-file /path/to/`.env` --from-env-file /another/path/.env
 ```
 
 ## Development
@@ -59,38 +59,90 @@ kubectl envsecret create --from-env-file /path/to/.env --from-env-file /another/
 - Go
 - Cobra CLI
 
-### Building the Project
+### Downloading the project
 
-To build the project, clone the repository and run:
+First you need is cloning the project
 
 ```sh
 git clone https://github.com/ogticrd/kubectl-envsecret.git
 cd kubectl-envsecret
-go build
+```
+
+### Building the Project
+
+To build the project, clone the repository and run:
+
+#### With `go` command
+
+```sh
+go build -o kubectl-envsecret main.go
+```
+
+#### Using `make` command
+
+```sh
+make build
+```
+
+### Running the Project
+
+#### With `go` command
+
+```sh
+go run main.go
+```
+
+> [!NOTE]\
+> Just run `./kubectl-envsecret` if you already built it.
+
+#### Using `make` command
+
+```sh
+make run
 ```
 
 ### Running Tests
 
 To run the tests, use the following command:
 
+#### With `go` command
+
 ```sh
 go test ./...
+```
+
+#### Using `make` command
+
+```sh
+make test
 ```
 
 ## Project Structure
 
 ```plaintext
 .
+├── LICENSE
+├── Makefile
+├── README.md
 ├── cmd
-│   ├── root.go
-│   ├── create.go
+│   ├── create.go
+│   └── root.go
+├── go.mod
+├── go.sum
 ├── internal
-│   └── utils
-│       └── utils.go
-├── main.go
+│   ├── k8sapi
+│   │   └── k8s.go
+│   ├── parser
+│   │   └── env.go
+│   └── utils
+│       └── utils.go
+└── main.go
 ```
 
 - **cmd**: Contains the CLI command definitions.
+- **internal/k8sapi**: Contains a wrapper of the usage of Kubernetes API to
+  manage secrets.
+- **internal/parser**: Contains functions to parse `.env` files.
 - **internal/utils**: Contains utility functions used by the commands.
 
 ## Contributing
