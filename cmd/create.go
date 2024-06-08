@@ -91,7 +91,7 @@ func (o *CreateOptions) Complete(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(ns) == 0 {
-		o.namespace = ""
+		o.namespace = "default"
 	} else {
 		o.namespace = ns
 	}
