@@ -5,6 +5,10 @@
 // such as removing duplicates from slices, string manipulations, etc.
 package utils
 
+import (
+	"os"
+)
+
 // RemoveDuplicatedStringE removes duplicate strings from a slice.
 //
 // This function takes a slice of strings as input and returns a new slice
@@ -31,4 +35,22 @@ func RemoveDuplicatedStringE(s []string) []string {
 	}
 
 	return cleanedSlice
+}
+
+func ValidatePaths(s []string) error {
+	for _, path := range s {
+		if _, err := os.Stat(path); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func MapStringToBytes(m map[string]string) map[string][]byte {
+	var convertedMap map[string][]byte = make(map[string][]byte)
+	for key, value := range m {
+		convertedMap[key] = []byte(value)
+	}
+
+	return convertedMap
 }
