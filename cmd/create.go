@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/ogticrd/kubectl-envsecret/internal/k8s"
+	"github.com/ogticrd/kubectl-envsecret/internal/k8sapi"
 	"github.com/ogticrd/kubectl-envsecret/internal/parser"
 	"github.com/ogticrd/kubectl-envsecret/internal/utils"
 	"github.com/spf13/cobra"
@@ -69,6 +69,7 @@ func NewCmdCreate(streams genericclioptions.IOStreams) *cobra.Command {
 	return createCmd
 }
 
+// Complete completes all necessary settigns.
 func (o *CreateOptions) Complete(cmd *cobra.Command, args []string) error {
 	o.secretName = args[0]
 
@@ -99,15 +100,17 @@ func (o *CreateOptions) Complete(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
+// Validate validates all set flags and args
 func (o *CreateOptions) Validate() error {
 	// Validate that paths exists
 	return utils.ValidatePaths(o.envFilePaths)
 }
 
+// Run does the secret creation
 func (o *CreateOptions) Run() error {
 	var err error
 
-	client, err := k8s.NewK8sClientFromConfig(k8s.NewK8sConfig(o.restConfig, o.namespace))
+	client, err := k8sapi.NewK8sClientFromConfig(k8sapi.NewK8sConfig(o.restConfig, o.namespace))
 	if err != nil {
 		return err
 	}
