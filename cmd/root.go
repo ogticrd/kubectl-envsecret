@@ -11,14 +11,14 @@ import (
 	"k8s.io/cli-runtime/pkg/genericiooptions"
 )
 
-// NativeOptions encapsulates the configuration flags and IO streams for the command.
+// RootCmdOptions encapsulates the configuration flags and IO streams for the command.
 type RootCmdOptions struct {
 	configFlags *genericclioptions.ConfigFlags // Configuration flags from kubectl CLI.
 
 	genericclioptions.IOStreams // Input/output streams for the CLI.
 }
 
-// NewNativeOptions creates a new NativeOptions instance with the provided IO streams.
+// NewRootCmdOptions creates a new NativeOptions instance with the provided IO streams.
 //
 // Example usage:
 // streams := genericiooptions.IOStreams{In: os.Stdin, Out: os.Stdout, ErrOut: os.Stderr}
