@@ -101,7 +101,7 @@ go run main.go
 make run
 
 # For passing args and flags
-make run ARGS='create' FLAGS='--from-env-file ./.env --namespace default'
+make run CMD="create" ARGS="secret-name" FLAGS="--from-env-file /path/to/secret --namespace default"
 ```
 
 ### Running Tests
