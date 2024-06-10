@@ -62,10 +62,10 @@ func TestRemoveDuplicatedStringE(t *testing.T) {
 
 func TestValidatePaths(t *testing.T) {
 	tests := []struct {
+		expectedErr error
+		setup       func()
 		name        string
 		input       []string
-		setup       func()
-		expectedErr error
 	}{
 		{
 			name:  "All valid paths",
