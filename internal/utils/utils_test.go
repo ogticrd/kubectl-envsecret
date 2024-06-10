@@ -1,10 +1,12 @@
-package utils
+package utils_test
 
 import (
 	"errors"
 	"os"
 	"reflect"
 	"testing"
+
+	"github.com/ogticrd/kubectl-envsecret/internal/utils"
 )
 
 func TestRemoveDuplicatedStringE(t *testing.T) {
@@ -52,7 +54,7 @@ func TestRemoveDuplicatedStringE(t *testing.T) {
 
 	for _, test := range testcases {
 		t.Run(test.name, func(t *testing.T) {
-			testResult := RemoveDuplicatedStringE(test.input)
+			testResult := utils.RemoveDuplicatedStringE(test.input)
 			if !reflect.DeepEqual(testResult, test.expected) {
 				t.Errorf("expected %v, got %v", test.expected, testResult)
 			}
@@ -121,7 +123,7 @@ func TestValidatePaths(t *testing.T) {
 			tt.setup()
 			defer os.RemoveAll("testdata")
 
-			err := ValidatePaths(tt.input)
+			err := utils.ValidatePaths(tt.input)
 			if !errors.Is(err, tt.expectedErr) {
 				t.Errorf("expected %v, got %v", tt.expectedErr, err)
 			}
@@ -186,7 +188,7 @@ func TestMapStringToBytes(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := MapStringToBytes(tt.input)
+			result := utils.MapStringToBytes(tt.input)
 			if !reflect.DeepEqual(result, tt.expected) {
 				t.Errorf("expected %v, got %v", tt.expected, result)
 			}
