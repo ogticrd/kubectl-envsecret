@@ -1,7 +1,12 @@
 GOCMD=go
+FIELDALIGNMENT_CMD=fieldalignment
 GOBUILD=$(GOCMD) build
 BINARY_NAME=kubectl-envsecret
 MAIN_FILE=main.go
+
+fieldalignment:
+	@echo "Running fieldalignment to optimize struct sizes"
+	$(FIELDALIGNMENT_CMD) -fix ./...
 
 test:
 	@echo "Running tests"
@@ -15,7 +20,7 @@ build:
 	@echo "Building..."
 	$(GOCMD) build -o $(BINARY_NAME) $(MAIN_FILE)
 
-build-prod: test format build
+build-prod: test fieldalignment format build
 
 run: build
 	./$(BINARY_NAME) $(CMD) $(ARGS) $(FLAGS)
