@@ -27,17 +27,16 @@ import (
 // result := RemoveDuplicatedStringE(input)
 // fmt.Println(result) // Output might be: ["apple", "banana", "orange"]
 func RemoveDuplicatedStringE(s []string) []string {
-	var cleanedSlice []string
-	var set map[string]int = make(map[string]int)
+	cleanedSlice := make([]string, 0)
+	set := make(map[string]struct{})
 
 	// Save all items into a set to remove duplicates
-	for idx, e := range s {
-		set[e] = idx
-	}
-
-	// Save all unique items into the cleaned slice
-	for k := range set {
-		cleanedSlice = append(cleanedSlice, k)
+	// and append to new slice
+	for _, e := range s {
+		if _, found := set[e]; !found {
+			set[e] = struct{}{}
+			cleanedSlice = append(cleanedSlice, e)
+		}
 	}
 
 	return cleanedSlice
