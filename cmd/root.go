@@ -38,6 +38,7 @@ var (
 	LongDescription  string = `kubectl-envsecret is a plugin for kubectl that simplifies the process of creating Kubernetes secrets from .env files, including support for multiline environment variables. 
 
   This tool reads the .env file, converts its contents into Kubernetes secret format, and applies it to your cluster. It streamlines the management of secrets, making it easier to handle configurations that include multiline values.`
+	AppVersion string = "undefined"
 )
 
 // NewCmdEnvSecret creates a new cobra command for the kubectl-envsecret plugin.
@@ -55,8 +56,9 @@ func NewCmdEnvSecret(streams genericiooptions.IOStreams) *cobra.Command {
 		Annotations: map[string]string{
 			cobra.CommandDisplayNameAnnotation: DisplayName,
 		},
-		Short: ShortDescription,
-		Long:  LongDescription,
+		Short:   ShortDescription,
+		Long:    LongDescription,
+		Version: AppVersion,
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
 		// Run: func(cmd *cobra.Command, args []string) { },
@@ -71,6 +73,7 @@ func NewCmdEnvSecret(streams genericiooptions.IOStreams) *cobra.Command {
 
 	// create subcommands
 	cmd.AddCommand(NewCmdCreate(streams))
+	cmd.AddCommand(NewCmdVersion(streams))
 
 	return cmd
 }
