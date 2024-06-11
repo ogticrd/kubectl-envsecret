@@ -13,4 +13,4 @@ on:
       - ".github/workflows/development.yaml"
 jobs:
   call-build-workflow:
-    uses: "./build.yaml"
+    uses: "./.github/workflows/build.yaml"
