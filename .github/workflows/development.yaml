@@ -1,0 +1,16 @@
+name: Build and test for devices
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
+      - "Makefile"
+      - ".github/workflows/build.yaml"
+      - ".github/workflows/development.yaml"
+jobs:
+  call-build-workflow:
+    uses: "./.github/workflows/build.yaml"

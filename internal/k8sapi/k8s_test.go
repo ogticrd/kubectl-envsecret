@@ -5,9 +5,7 @@ import (
 
 	"github.com/ogticrd/kubectl-envsecret/internal/k8sapi"
 	"github.com/stretchr/testify/assert"
-	v1 "k8s.io/api/core/v1"
 	kerr "k8s.io/apimachinery/pkg/api/errors"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes/fake"
 )
 
@@ -35,15 +33,4 @@ func mockSecretData() map[string]string {
   line4`
 	secret["bar"] = "line"
 	return secret
-}
-
-func mockSecret(secret map[string]string) *v1.Secret {
-	return &v1.Secret{
-		ObjectMeta: metav1.ObjectMeta{
-			Name:            "test",
-			Namespace:       "test",
-			OwnerReferences: []metav1.OwnerReference{},
-		},
-		StringData: secret,
-	}
 }
