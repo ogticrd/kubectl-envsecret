@@ -5,7 +5,7 @@
 `kubectl-envsecret` is a Kubernetes plugin designed to simplify the creation of
 Kubernetes secrets from `.env` files, including support for multiline
 environment variables. This tool streamlines the management of secrets, making
-it easier to handle configurations that include complex, multiline values.
+it easier to handle configurations that include complex multiline values.
 
 ## Features
 
