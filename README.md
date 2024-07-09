@@ -43,13 +43,13 @@ kubectl envsecret create --from-env-file <path-to-env-file> --from-env-file <pat
 #### Create a Secret from a Single `.env` File
 
 ```sh
-kubectl envsecret create --from-env-file /path/to/`.env`
+kubectl envsecret create --from-env-file /path/to/.env
 ```
 
 #### Create a Secret from Multiple `.env` Files
 
 ```sh
-kubectl envsecret create --from-env-file /path/to/`.env` --from-env-file /another/path/.env
+kubectl envsecret create --from-env-file /path/to/.env --from-env-file /another/path/.env
 ```
 
 ## Development
