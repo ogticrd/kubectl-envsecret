@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Setup Go ${{ matrix.go-version }}
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v6
     - name: Get module name
       id: module_name
       run: |
